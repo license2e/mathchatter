@@ -1,0 +1,152 @@
+html, body {
+  font-family: 'Oxygen', 'Helvetica', sans-serif;
+  height: 100%;
+}
+.mc-avatar {
+  width: 169px;
+  height: 87px;
+}
+.mc-layout .mc-header .mdl-textfield {
+  padding: 0px;
+  margin-top: 41px;
+}
+.mc-layout .mc-header .mdl-textfield .mdl-textfield__expandable-holder {
+  bottom: 19px;
+}
+.mdl-layout__drawer .avatar {
+  margin-bottom: 16px;
+}
+.mc-drawer {
+  border: none;
+}
+/* iOS Safari specific workaround */
+.mc-drawer .mdl-menu__container {
+  z-index: -1;
+}
+.mc-drawer .mc-drawer-main {
+  z-index: -2;
+}
+/* END iOS Safari specific workaround */
+.mc-header .mdl-menu .mdl-menu__item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mc-header .mdl-menu .mdl-menu__item a {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+}
+.mc-drawer-header {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 16px;
+  height: 131px;
+}
+
+.mc-drawer .mc-drawer-main {
+  flex-grow: 1;
+}
+
+.mc-credits {
+  font-size: 10px;
+  color: #757575;
+  padding: 12px;
+  line-height: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.mdl-layout__content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+	display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.mc-chatarea {
+  flex-grow: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+	display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.mc-messages-container {
+  flex-grow: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.mc-messages {
+  overflow: auto;
+}
+
+.mc-messages .mc-message {
+  padding: 12px 16px 2px;
+}
+
+.mc-messages .mc-message div {
+  float: left;
+  padding-right: 20px;
+}
+
+.mc-messages .mc-message .username {
+  font-weight: bold;
+  width: 80px;
+}
+
+.mc-chatinput {
+  width: 100%;
+  padding: 20px 0 0;
+}
+
+.mc-chatinput .mdl-textfield__label:after {
+  bottom: 0;
+}
+
+.mdl-list__item .mdl-list__item-primary-content .mdl-list__item-icon {
+  margin-right: 12px;
+}
+
+#mc-chatform {
+  margin-bottom: 50px;
+}
+
+.mc-send {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}

@@ -1,0 +1,123 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>math chatter</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/images/android-chrome-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-120x120.png">
+    <meta name="theme-color" content="#2196F3" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.2/material.blue-deep_orange.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <script id="roomlistitem-template" type="text/x-handlebars-template">
+      <li class="mdl-menu__item mc-room">
+        {{#if key}}
+        <a href="/{{key}}">{{name}}</a>
+        {{else}}
+        <a href="/">{{name}}</a>
+        {{/if}}
+      </li>
+    </script>
+    <script id="roomlist-template" type="text/x-handlebars-template">
+      <li class="mdl-menu__item">
+        <h5>Current list of rooms:</h5>
+      </li>
+      {{#each rooms}}
+      <li class="mdl-menu__item mc-room">
+        {{#if key}}
+        <a href="/{{key}}">{{name}}</a>
+        {{else}}
+        <a href="/">{{name}}</a>
+        {{/if}}
+      </li>
+      {{~/each}}
+      <li class="mdl-menu__item">
+        <a id="mc-addroom" href="#">
+          <i class="material-icons">add</i>Add new room
+        </a>
+      </li>
+    </script>
+    <script id="message-template" type="text/x-handlebars-template">
+      <div class="mc-message clearfix message-type-{{msgType}}">
+        <div class="{{colorCls}} username">{{username}}</div>
+        <div class="text">{{msg}}</div>
+      </div>
+    </script>
+    <script id="user-template" type="text/x-handlebars-template">
+      <li id="{{id}}" class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          <i class="mdl-color-text--green-600 material-icons mdl-list__item-icon">person</i>
+          {{username}}
+        </span>
+      </li>
+    </script>
+    <div class="mc-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="mc-header mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span id="mc-roomname" class="mdl-layout-title">...</span>
+          <button id="mc-switchrooms" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">arrow_drop_down</i>
+            <span class="visuallyhidden">Switch Rooms</span>
+          </button>
+          <ul id="mc-roomlist" class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="mc-switchrooms">
+            <li class="mdl-menu__item">
+              <em>loading...</em>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <div class="mc-drawer mdl-layout__drawer">
+        <header class="mc-drawer-header">
+          <img src="images/logo.png" class="mc-avatar">
+        </header>
+        <div class="mc-drawer-main mdl-color--grey-300">
+          <ul id="mc-userlist" class="mc-list-control mdl-list"></ul>
+          <div class="mc-credits">
+            Filled, Addition graphics by <a href="http://www.freepik.com/">Freepik</a> from <a href="http://www.flaticon.com/">Flaticon</a> are licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
+          </div>
+        </div>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mc-chatarea mdl-color--white">
+          <div class="mc-messages-container">
+            <div id="mc-messages" class="mc-messages"></div>
+            <a id="mc-bottom" name="bottom"></a>
+          </div>
+          <form id="mc-chatform" action="/send">
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--11-col mdl-cell--7-col-tablet mdl-cell--3-col-phone">
+                <div class="mc-chatinput mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="mc-chatinput"></textarea>
+                  <label class="mdl-textfield__label" for="mc-chatinput">Type to chat</label>
+                </div>
+              </div>
+              <div class="mc-send mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone">
+                <button id="sendbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored">
+                  <i class="material-icons" role="presentation">send</i>
+                  <span class="visuallyhidden">Send</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.2/material.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
