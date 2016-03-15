@@ -10,4 +10,6 @@
 ## Run
 
 1. `nvm use` - in case your default Node.js is different from the one thats required
-2. `npm start`
+2. start `mongo` db
+3. `npm start`
+4. open [http://localhost:4567/](http://localhost:4567/)
